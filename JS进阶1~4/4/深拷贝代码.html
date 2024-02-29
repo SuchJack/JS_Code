@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      name: 'jack',
+      age: 18,
+      hobby: ['乒乓球', '足球'],
+      family: {
+        baby: 'mimi'
+      }
+    }
+
+    const o = {}
+
+    function deepCopy(newObj, oldObj) {
+      for (let k in oldObj) {
+        // 处理数组的问题
+        if (oldObj[k] instanceof Array) {
+          // newObj[k] 接受 [] hobby 
+          // oldObj[k] ['乒乓球', '足球']
+          newObj[k] = []
+          // k 是索引号 oldObj[k] 乒乓球 足球
+          deepCopy(newObj[k], oldObj[k])
+        } else if (oldObj[k] instanceof Object) {
+          // newObj[k] 接受 [] hobby 
+          // oldObj[k] ['乒乓球', '足球']
+          newObj[k] = {}
+          // k 是索引号 oldObj[k] 乒乓球 足球
+          deepCopy(newObj[k], oldObj[k])
+        } else {
+          // k是属性名 uname,age oldObj[k] 属性值18
+          // newObj[k] === o.uname
+          newObj[k] = oldObj[k]
+        }
+      }
+    }
+    deepCopy(o, obj)
+    console.log(o);
+    o.age = 20
+    o.hobby[0] = '篮球'
+    o.family.baby = 'bibi'
+    console.log(o);
+    console.log(obj);
+
+
+
+
+    // // 变量动态赋值
+    // let name = 'uname'
+    // const demo1 = {
+
+    // }
+    // demo1[name] = 'jack'
+    // console.log(demo1);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<p>123</p>
+
+<body>
+
+  <script>
+    function fn() {
+      try {
+        const p = document.querySelector('.p')
+        p.style.color = 'red'
+      } catch (err) {
+        // 拦截错误，但是不中断
+        // console.log(err.message);
+        // return
+        throw new Error('你看看')
+      }
+      finally {
+        // 不管你对不对，都执行~
+        alert(23333);
+      }
+    }
+    fn()
+  </script>
+  ++++++++
+</body>
+
+</html>

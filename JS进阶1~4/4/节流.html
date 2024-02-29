@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 500px;
+      height: 500px;
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <script src="./lodash.min.js"></script>
+  <script>
+    const box = document.querySelector('.box')
+    let i = 1
+    function mouseMove() {
+      box.innerHTML = i++
+    }
+    // box.addEventListener('mousemove', mouseMove)
+    // box.addEventListener('mousemove', _.throttle(mouseMove, 500))
+
+    function throttle(fn, t) {
+      let timer = null
+      return function () {
+        if (!timer) {
+          timer = setTimeout(function () {
+            fn()
+            // 清空定时器
+            timer = null
+          }, t)
+        }
+      }
+    } +
+      box.addEventListener('mousemove', throttle(mouseMove, 500))
+
+  </script>
+</body>
+
+</html>
